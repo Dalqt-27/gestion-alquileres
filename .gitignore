@@ -1,0 +1,19 @@
+# Visual Studio / build
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.cache
+*.log
+TestResults/
+# NuGet restores these dependencies
+packages/
+# Do not share database dumps or local secrets
+*.bak
+*.mdf
+*.ldf
+.env
+.env.*
+!.env.example
+# Keep .cs, .edmx, .resx, .config, .csproj and the solution

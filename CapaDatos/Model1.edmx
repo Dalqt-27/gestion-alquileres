@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_ALQUILERESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alquiler">
+          <Key>
+            <PropertyRef Name="IdAlquiler" />
+          </Key>
+          <Property Name="IdAlquiler" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="IdEquipo" Type="int" Nullable="false" />
+          <Property Name="FechaAlquiler" Type="datetime" Nullable="false" />
+          <Property Name="FechaDevolucion" Type="datetime" />
+          <Property Name="CostoTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="RUC" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="IdEquipo" />
+          </Key>
+          <Property Name="IdEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CostoDiario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Disponible" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Alquiler__IdClie__3F466844">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Alquiler" Type="Self.Alquiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Alquiler">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alquiler__IdEqui__403A8C7D">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+          <End Role="Alquiler" Type="Self.Alquiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="Alquiler">
+              <PropertyRef Name="IdEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ALQUILERESModelStoreContainer">
+          <EntitySet Name="Alquiler" EntityType="Self.Alquiler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Alquiler__IdClie__3F466844" Association="Self.FK__Alquiler__IdClie__3F466844">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Alquiler" EntitySet="Alquiler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alquiler__IdEqui__403A8C7D" Association="Self.FK__Alquiler__IdEqui__403A8C7D">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Alquiler" EntitySet="Alquiler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_ALQUILERESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alquiler">
+          <Key>
+            <PropertyRef Name="IdAlquiler" />
+          </Key>
+          <Property Name="IdAlquiler" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="IdEquipo" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlquiler" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDevolucion" Type="DateTime" Precision="3" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Alquiler__IdClie__3F466844" FromRole="Alquiler" ToRole="Cliente" />
+          <NavigationProperty Name="Equipo" Relationship="Self.FK__Alquiler__IdEqui__403A8C7D" FromRole="Alquiler" ToRole="Equipo" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUC" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Alquiler" Relationship="Self.FK__Alquiler__IdClie__3F466844" FromRole="Cliente" ToRole="Alquiler" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="IdEquipo" />
+          </Key>
+          <Property Name="IdEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostoDiario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Disponible" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Alquiler" Relationship="Self.FK__Alquiler__IdEqui__403A8C7D" FromRole="Equipo" ToRole="Alquiler" />
+        </EntityType>
+        <Association Name="FK__Alquiler__IdClie__3F466844">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Alquiler" Type="Self.Alquiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Alquiler">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alquiler__IdEqui__403A8C7D">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+          <End Role="Alquiler" Type="Self.Alquiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="Alquiler">
+              <PropertyRef Name="IdEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_EFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alquiler" EntityType="Self.Alquiler" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+          <AssociationSet Name="FK__Alquiler__IdClie__3F466844" Association="Self.FK__Alquiler__IdClie__3F466844">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Alquiler" EntitySet="Alquiler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alquiler__IdEqui__403A8C7D" Association="Self.FK__Alquiler__IdEqui__403A8C7D">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Alquiler" EntitySet="Alquiler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_ALQUILERESModelStoreContainer" CdmEntityContainer="BD_EFEntities">
+          <EntitySetMapping Name="Alquiler">
+            <EntityTypeMapping TypeName="DB_ALQUILERESModel.Alquiler">
+              <MappingFragment StoreEntitySet="Alquiler">
+                <ScalarProperty Name="IdAlquiler" ColumnName="IdAlquiler" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
+                <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="DB_ALQUILERESModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo">
+            <EntityTypeMapping TypeName="DB_ALQUILERESModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CostoDiario" ColumnName="CostoDiario" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
