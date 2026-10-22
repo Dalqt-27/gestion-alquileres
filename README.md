@@ -13,13 +13,19 @@ Proyecto **académico personal** desarrollado para el curso Fundamentos de Siste
 
 ## Capturas
 
-La carpeta `capturas/` está reservada para evidencias reales. **Aún no hay capturas de la aplicación en el repositorio**. Cuando ejecutes el proyecto en Windows y SQL Server, añade:
+Las siguientes capturas corresponden a la interfaz Windows Forms del proyecto:
 
-- ![Formulario](capturas/01-formulario.png) — vista general del formulario.
-- ![Formulario](02-alquiler-registrado.png) — alquiler recién registrado.
-- ![Formulario](03-devolucion.png) — devolución y cálculo del importe.
-- ![Formulario](04-reporte.png) — reporte de ingresos o alquileres activos.
+### 1. Formulario principal
+![Formulario principal de mantenimiento de alquileres](capturas/01-formulario.png)
 
+### 2. Registro de un alquiler
+![Alquiler registrado en el sistema](capturas/02-alquiler-registrado.png)
+
+### 3. Registro de devolución
+![Devolución y costo del alquiler](capturas/03-devolucion.png)
+
+### 4. Reporte
+![Reporte de alquileres](capturas/04-reporte.png)
 
 ## Tecnologías y organización
 
