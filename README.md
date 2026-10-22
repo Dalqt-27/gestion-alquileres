@@ -15,12 +15,11 @@ Proyecto **académico personal** desarrollado para el curso Fundamentos de Siste
 
 La carpeta `capturas/` está reservada para evidencias reales. **Aún no hay capturas de la aplicación en el repositorio**. Cuando ejecutes el proyecto en Windows y SQL Server, añade:
 
-- `01-formulario.png` — vista general del formulario.
-- `02-alquiler-registrado.png` — alquiler recién registrado.
-- `03-devolucion.png` — devolución y cálculo del importe.
-- `04-reporte.png` — reporte de ingresos o alquileres activos.
+- ![Formulario](capturas/01-formulario.png) — vista general del formulario.
+- ![Formulario](02-alquiler-registrado.png) — alquiler recién registrado.
+- ![Formulario](03-devolucion.png) — devolución y cálculo del importe.
+- ![Formulario](04-reporte.png) — reporte de ingresos o alquileres activos.
 
-Después podrás mostrarlas mediante Markdown, por ejemplo `![Formulario](capturas/01-formulario.png)`.
 
 ## Tecnologías y organización
 
