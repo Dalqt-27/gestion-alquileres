@@ -13,16 +13,14 @@ Proyecto **académico personal** desarrollado para el curso Fundamentos de Siste
 
 ## Capturas
 
-Coloca capturas **reales de la aplicación ejecutándose** en la carpeta `capturas/`:
+La carpeta `capturas/` está reservada para evidencias reales. **Aún no hay capturas de la aplicación en el repositorio**. Cuando ejecutes el proyecto en Windows y SQL Server, añade:
 
-- `01-formulario.png` — formulario general y datos de alquiler de ejemplo.
-- `02-alquiler-registrado.png` — nuevo registro en la tabla.
-- `03-devolucion.png` — alquiler devuelto y costo calculado.
+- `01-formulario.png` — vista general del formulario.
+- `02-alquiler-registrado.png` — alquiler recién registrado.
+- `03-devolucion.png` — devolución y cálculo del importe.
 - `04-reporte.png` — reporte de ingresos o alquileres activos.
 
-Después añade las imágenes al README con Markdown, por ejemplo:
-
-`![Formulario de alquileres](capturas/01-formulario.png)`
+Después podrás mostrarlas mediante Markdown, por ejemplo `![Formulario](capturas/01-formulario.png)`.
 
 ## Tecnologías y organización
 
@@ -63,6 +61,14 @@ Después añade las imágenes al README con Markdown, por ejemplo:
 La primera ejecución muestra clientes y equipos activos, pero la tabla de alquileres estará vacía. **Los alquileres se crean desde la interfaz** al pulsar Registrar. Al registrar un alquiler, el equipo pasa a no disponible; al consignar su devolución, vuelve a estar disponible. El costo se calcula al devolver el equipo. La eliminación lógica requiere un alquiler devuelto.
 
 El script contiene únicamente datos ficticios de clientes y equipos. No se incluyen archivos `.mdf`, `.ldf`, binarios de compilación, paquetes NuGet ni claves privadas. La aplicación está pensada para un escenario de demostración y no para uso de producción.
+
+## Observaciones técnicas
+
+- Los archivos `Model1.*`, clases de entidades y plantillas `.tt` se generan desde Entity Framework Database First: se conservan porque participan en la compilación o regeneración del modelo.
+- La carpeta `packages/` no está versionada: restaura las dependencias NuGet antes de compilar.
+- No se incluyen registros iniciales de alquiler: estos se generan usando la interfaz.
+- La disponibilidad se controla sobre el estado actual del equipo; **no implementa un motor completo de reservas futuras ni control de concurrencia transaccional entre múltiples usuarios**.
+- El diseño utiliza fechas e importes de demostración; antes de usarlo en un negocio real hay que reforzar la validación de solapamientos históricos, controles de concurrencia, errores y pruebas.
 
 ## Limitaciones
 

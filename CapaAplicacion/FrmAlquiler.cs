@@ -206,6 +206,14 @@ namespace CapaAplicacion
                 return;
             }
 
+            if (dgvAlquileres.Columns["IdAlquiler"] == null ||
+                dgvAlquileres.Columns["IdCliente"] == null ||
+                dgvAlquileres.Columns["IdEquipo"] == null)
+            {
+                idAlquilerSeleccionado = 0;
+                return;
+            }
+
             if (!dgvAlquileres.Columns.Contains("IdCliente"))
             {
                 return;

@@ -65,16 +65,11 @@ namespace CapaDatos
                         return "No se puede registrar: el equipo no está disponible";
                     }
 
-                    DateTime fechaAlquilerNueva = alquiler.FechaAlquiler.Date;
-
+                    // Cualquier alquiler abierto impide asignar el equipo simultáneamente.
                     bool existeConflicto = context.Alquiler.Any(a =>
                         !a.Eliminado &&
                         a.IdEquipo == alquiler.IdEquipo &&
-                        (
-                            !a.FechaDevolucion.HasValue ||
-                            (a.FechaAlquiler <= fechaAlquilerNueva &&
-                             a.FechaDevolucion >= fechaAlquilerNueva)
-                        ));
+                        !a.FechaDevolucion.HasValue);
 
                     if (existeConflicto)
                     {
@@ -123,6 +118,18 @@ namespace CapaDatos
                     if (equipoNuevo == null)
                     {
                         return "Seleccione un equipo válido";
+                    }
+
+                    // Evitar asignar o reprogramar sobre un alquiler activo diferente.
+                    // El control también considera fechas anteriores al alquiler actual.
+                    bool otroAlquilerActivo = context.Alquiler.Any(a =>
+                        !a.Eliminado &&
+                        a.IdAlquiler != alquiler.IdAlquiler &&
+                        a.IdEquipo == alquiler.IdEquipo &&
+                        !a.FechaDevolucion.HasValue);
+                    if (otroAlquilerActivo)
+                    {
+                        return "No se puede modificar: el equipo tiene otro alquiler activo";
                     }
 
                     DateTime? fechaDevolucionNueva = alquiler.FechaDevolucion;
